@@ -1,14 +1,13 @@
 
-const CountryDetail = ({country, onCountryClicked}) => {
+const CountryDetail = ({country, onFavCountryClicked}) => {
     const population = country.population.toLocaleString()
     const imageSrc = country.flags.png
     const googleMapsLink = country.maps.googleMaps
 
     const handleOnClick = (evt) => {
       console.log(`Clicked on ${country.name.common}`)
-      //const index = evt.target.value
-      //const country = countries[index]
-      //onCountryClicked(country)
+      //const index = evt.target.value ??
+      onFavCountryClicked(country)
 
     }
 

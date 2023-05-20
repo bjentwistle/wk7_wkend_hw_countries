@@ -8,7 +8,6 @@ const PopulationTotal = (countries) => {
     }else {
         return worldPopulation.toLocaleString();
     }
-   
 }
 
 export default PopulationTotal;

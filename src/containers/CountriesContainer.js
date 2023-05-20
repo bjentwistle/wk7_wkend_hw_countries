@@ -4,10 +4,12 @@ import "./CountriesContainer.css";
 import CountryDetail from "../components/CountryDetail";
 import CountrySelect from "../components/CountrySelect";
 import PopulationTotal from "../components/PopulationTotal";
+//import CountryFavoritesList from "../components/CountryFavouritesList";
 
 const CountryContainer = () => {
-  const [countries, setCountries] = useState([]); //initial state - empty array
-  const [selectedCountry, setSelectedCountry] = useState(null); //initial state - unselected
+    const [countries, setCountries] = useState([]); //initial state - empty array
+    const [selectedCountry, setSelectedCountry] = useState(null); //initial state - unselected
+    //const [favoriteCountries, setFavoriteCountries] = useState(null);
   
 
   useEffect(() => {
@@ -24,6 +26,11 @@ const CountryContainer = () => {
   const updateSelectedCountry = function (country) {
     setSelectedCountry(country);
   };
+
+//   const updateFavoriteCountry = function(country) {
+//     setFavoriteCountry(country)
+//   }
+
   const worldPopulation = PopulationTotal(countries)
 
   return (
@@ -38,7 +45,8 @@ const CountryContainer = () => {
     <main>
         {selectedCountry ? <CountryDetail country={selectedCountry} /> : null}
     </main>
-      
+    {/* <CountryFavoritesList favoriteCountries={countries} updateFavoriteCountry={updateFavoriteCountry}/>
+       */}
     </div>
   );
 };

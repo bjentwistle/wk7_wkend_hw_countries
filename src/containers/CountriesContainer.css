@@ -1,6 +1,12 @@
 .main-container {
     display: flex;
     justify-content: space-between;
+    align-items: top;
     margin: 20px;
     padding: 20px;
+}
+
+img {
+    height: 150px;
+    width: 250px;
 }

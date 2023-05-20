@@ -2,11 +2,11 @@
 
 const CountrySelect = (props) => {
 
-  // TODO: refactor this - index not great as a key
+  // TODO: refactor this - index not great as a key - done
   // TODO: make this accessible - label
-  const countryOptions = props.countries.map((country, index) => {
+  const countryOptions = props.countries.map((country, cca3) => {
 
-    return <option key={index} value={index}>{country.name.common}</option>
+    return <option label = {country.name.common} key={cca3} value={cca3}>{country.name.common}</option>
 
   })
 
@@ -22,9 +22,11 @@ const CountrySelect = (props) => {
 
   return (
     <div>
+      <label>
       <select onChange={handleOnChange}>
         {countryOptions}
       </select>
+      </label>
     </div>
   )
 

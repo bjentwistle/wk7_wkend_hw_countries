@@ -3,10 +3,12 @@ import React, { useState, useEffect } from "react";
 import "./CountriesContainer.css";
 import CountryDetail from "../components/CountryDetail";
 import CountrySelect from "../components/CountrySelect";
+import PopulationTotal from "../components/PopulationTotal";
 
 const CountryContainer = () => {
   const [countries, setCountries] = useState([]); //initial state - empty array
   const [selectedCountry, setSelectedCountry] = useState(null); //initial state - unselected
+  const worldPopulation = PopulationTotal(countries)
 
   useEffect(() => {
     getCountries();
@@ -25,12 +27,17 @@ const CountryContainer = () => {
 
   return (
     <div className="main-container">
-      {/* <CountryList countries={countries} onCountryClicked={onCountryClicked} /> */}
+    <header> World Population: {worldPopulation}!</header>
+    <main>
       <CountrySelect
         countries={countries}
         updateSelectedCountry={updateSelectedCountry}
       />
-      {selectedCountry ? <CountryDetail country={selectedCountry} /> : null}
+    </main>
+    <main>
+        {selectedCountry ? <CountryDetail country={selectedCountry} /> : null}
+    </main>
+      
     </div>
   );
 };

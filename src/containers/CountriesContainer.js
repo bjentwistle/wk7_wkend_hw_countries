@@ -8,7 +8,7 @@ import PopulationTotal from "../components/PopulationTotal";
 const CountryContainer = () => {
   const [countries, setCountries] = useState([]); //initial state - empty array
   const [selectedCountry, setSelectedCountry] = useState(null); //initial state - unselected
-  const worldPopulation = PopulationTotal(countries)
+  
 
   useEffect(() => {
     getCountries();
@@ -24,10 +24,11 @@ const CountryContainer = () => {
   const updateSelectedCountry = function (country) {
     setSelectedCountry(country);
   };
+  const worldPopulation = PopulationTotal(countries)
 
   return (
     <div className="main-container">
-    <header> World Population: {worldPopulation}!</header>
+    <header> World Population: {worldPopulation} </header>
     <main>
       <CountrySelect
         countries={countries}

@@ -1,6 +1,7 @@
 .main-container {
     display: grid;
-    grid-template-areas:
+    /* not convince this grid template is right at all */
+    grid-template-areas: 
     'header header'
     'main main';
     gap: 10px;

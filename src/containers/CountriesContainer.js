@@ -27,10 +27,14 @@ const CountryContainer = () => {
   };
 
   const onFavCountryClicked = function (country) {
+    if (favoriteCountries.includes(country)) {
+        return null
+    } else {
     const updatedFavoriteCountries = [...favoriteCountries, country];
     //favoriteCountries.push(country); this mutates the state of favoriteCountries hence react can't see a change (face palm emoji)
     setFavoriteCountries(updatedFavoriteCountries);
-    console.log(updatedFavoriteCountries)
+    //console.log(updatedFavoriteCountries)
+    }
   };
 
   const worldPopulation = PopulationTotal(countries);

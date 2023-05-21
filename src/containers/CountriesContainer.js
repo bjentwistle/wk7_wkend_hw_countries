@@ -19,8 +19,14 @@ const CountryContainer = () => {
     //promises to populate getCountries array once fetched
     fetch("https://restcountries.com/v3.1/all")
       .then((res) => res.json())
-      .then((countries) => setCountries(countries));
+      .then((countries) => { //want countries sorted alphabetically!
+        const sortedCountries = countries.sort((a, b) =>
+          a.name.common.localeCompare(b.name.common)
+        );
+        setCountries(sortedCountries);
+      });
   };
+  
 
   const updateSelectedCountry = function (country) {
     setSelectedCountry(country);

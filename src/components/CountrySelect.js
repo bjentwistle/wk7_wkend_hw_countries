@@ -24,6 +24,7 @@ const CountrySelect = (props) => {
     <div>
       <label>
       <select onChange={handleOnChange}>
+      <option value="" disabled selected>Select a country</option>
         {countryOptions}
       </select>
       </label>

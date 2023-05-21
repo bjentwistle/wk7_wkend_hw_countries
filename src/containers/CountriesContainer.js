@@ -7,10 +7,10 @@ import PopulationTotal from "../components/PopulationTotal";
 import CountryFavoritesList from "../components/CountryFavoritesList";
 
 const CountryContainer = () => {
-    const [countries, setCountries] = useState([]); //initial state - empty array
-    const [selectedCountry, setSelectedCountry] = useState(null); //initial state - unselected
-    const [favoriteCountries, setFavoriteCountries] = useState([]);
-  
+  const [countries, setCountries] = useState([]); //initial state - empty array
+  const [selectedCountry, setSelectedCountry] = useState(null); //initial state - unselected
+  const [favoriteCountries, setFavoriteCountries] = useState([]);
+
   useEffect(() => {
     getCountries();
   }, []);
@@ -25,28 +25,38 @@ const CountryContainer = () => {
   const updateSelectedCountry = function (country) {
     setSelectedCountry(country);
   };
-   const onFavCountryClicked = function(country) {
-     favoriteCountries.push(country)
-     setFavoriteCountries(favoriteCountries)
-     //console.log(favoriteCountries)
-   };
 
-  const worldPopulation = PopulationTotal(countries)
+  const onFavCountryClicked = function (country) {
+    const updatedFavoriteCountries = [...favoriteCountries, country];
+    //favoriteCountries.push(country); this mutates the state of favoriteCountries hence react can't see a change (face palm emoji)
+    setFavoriteCountries(updatedFavoriteCountries);
+    console.log(updatedFavoriteCountries)
+  };
+
+  const worldPopulation = PopulationTotal(countries);
 
   return (
     <div className="main-container">
-    <header> World Population: {worldPopulation} </header>
-    <main>
-      <CountrySelect
-        countries={countries}
-        updateSelectedCountry={updateSelectedCountry}
-      />
-    </main>
-    <main>
-        {selectedCountry ? <CountryDetail country={selectedCountry} onFavCountryClicked={onFavCountryClicked} /> : null}
-    </main>
-        {favoriteCountries.length === 0 ? null : <CountryFavoritesList favoriteCountries ={favoriteCountries}/>}
-
+      <header> World Population: {worldPopulation} </header>
+      <main>
+        <CountrySelect
+          countries={countries}
+          updateSelectedCountry={updateSelectedCountry}
+        />
+      </main>
+      <main>
+        {selectedCountry ? (
+          <CountryDetail
+            country={selectedCountry}
+            onFavCountryClicked={onFavCountryClicked}
+          />
+        ) : null}
+      </main>
+      {favoriteCountries.length === 0 ? (
+        <h3>Favourite Countries will appear here</h3>
+      ) : (
+        <CountryFavoritesList favoriteCountries={favoriteCountries} setFavoriteCountries={setFavoriteCountries} />
+      )}
     </div>
   );
 };

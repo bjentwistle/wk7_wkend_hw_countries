@@ -6,9 +6,7 @@ const CountryDetail = ({country, onFavCountryClicked}) => {
 
     const handleOnClick = (evt) => {
       console.log(`Clicked on ${country.name.common}`)
-      //const index = evt.target.value ??
       onFavCountryClicked(country)
-
     }
 
     return (

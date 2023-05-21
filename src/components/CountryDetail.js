@@ -1,8 +1,9 @@
-const CountryDetail = ({ country, onFavCountryClicked }) => {
+const CountryDetail = ({ country, onFavCountryClicked}) => {
   const population = country.population.toLocaleString();
   const imageSrc = country.flags.png;
   const googleMapsLink = country.maps.googleMaps;
-
+  const bordersList = country.borders //[cca3, cca3 ...]
+  
   const handleOnClick = (evt) => {
     console.log(`Clicked on ${country.name.common}`);
     onFavCountryClicked(country);
@@ -21,6 +22,7 @@ const CountryDetail = ({ country, onFavCountryClicked }) => {
         population is {population}.
       </p>
       <p>They drive on the {country.car.side}. </p>
+      <p>Borders with {bordersList}</p>
       <p>
         {country.flag} {country.flags.alt}
       </p>

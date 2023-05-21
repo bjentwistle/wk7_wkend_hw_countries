@@ -10,6 +10,8 @@ const CountryContainer = () => {
   const [countries, setCountries] = useState([]); //initial state - empty array
   const [selectedCountry, setSelectedCountry] = useState(null); //initial state - unselected
   const [favoriteCountries, setFavoriteCountries] = useState([]);
+  const [borderingCountries, setBorderingCountries] = useState([]);
+
 
   useEffect(() => {
     getCountries();
@@ -30,7 +32,7 @@ const CountryContainer = () => {
 
   const updateSelectedCountry = function (country) {
     const countriesBordering = country.borders;
-    console.log("This is the country.borders array:", countriesBordering)
+   // console.log("This is the country.borders array:", countriesBordering)
     // gives ["IND","SNG" etc....] of cca3 codes per country bordering above country ^
     
     //with this array of cca3 codes, I want to find the countries that match from the countries list and put their names into a new array
@@ -40,11 +42,12 @@ const CountryContainer = () => {
         for (let x of countriesBordering) {
             const map1 = countries.find(obj => obj.cca3 === x)
             borderingCountries.push(map1.name.common)
-        }   console.log(borderingCountries)
-    
-    } 
-        setSelectedCountry(country)
+        }   console.log("From the updateSelectedCountry func:", borderingCountries)
 
+        setBorderingCountries(borderingCountries);
+    } 
+        
+        setSelectedCountry(country)
   };
 
   const onFavCountryClicked = function (country) {
@@ -67,12 +70,14 @@ const CountryContainer = () => {
         <CountrySelect
           countries={countries}
           updateSelectedCountry={updateSelectedCountry}
+          
         />
       </main>
       <main>
         {selectedCountry ? (
           <CountryDetail
             country={selectedCountry}
+            borderingCountries = {borderingCountries}
             onFavCountryClicked={onFavCountryClicked}
           />
         ) : null}

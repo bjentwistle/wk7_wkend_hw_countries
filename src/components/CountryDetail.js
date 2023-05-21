@@ -1,30 +1,38 @@
-const CountryDetail = ({ country, onFavCountryClicked}) => {
-  const population = country.population.toLocaleString();
-  const imageSrc = country.flags.png;
-  const googleMapsLink = country.maps.googleMaps;
-  const bordersList = country.borders //[cca3, cca3 ...]
-  
+const CountryDetail = (props) => {
+  const population = props.country.population.toLocaleString();
+  const imageSrc = props.country.flags.png;
+  const googleMapsLink = props.country.maps.googleMaps;
+
+  const bordersList = props.borderingCountries.map((country, index) => {
+    return (
+      <li name={country} key={index}>
+        {" "}
+        {country}
+      </li>
+    );
+  });
+
   const handleOnClick = (evt) => {
-    console.log(`Clicked on ${country.name.common}`);
-    onFavCountryClicked(country);
+    props.onFavCountryClicked(props.country);
   };
 
   return (
     <div className="country-detail" id="country-detail">
-      <h3>{country.name.common} Details: </h3>{" "}
+      <h3>{props.country.name.common} Details: </h3>{" "}
       <img
         id="flag-img"
         src={imageSrc}
         alt="country flag described above"
       ></img>
       <p>
-        The capital of {country.name.common} is {country.capital} and the
-        population is {population}.
+        The capital of {props.country.name.common} is {props.country.capital}{" "}
+        and the population is {population}.
       </p>
-      <p>They drive on the {country.car.side}. </p>
-      <p>Borders with {bordersList}</p>
+      <p>They drive on the {props.country.car.side}. </p>
+      <p>Borders with </p>
+      <ul>{bordersList}</ul>
       <p>
-        {country.flag} {country.flags.alt}
+        {props.country.flag} {props.country.flags.alt}
       </p>
       <a href={googleMapsLink}> Google Maps link (opens a new tab)</a>
       <button onClick={handleOnClick} name="favorite">

@@ -2,8 +2,12 @@ const CountryDetail = (props) => {
   const population = props.country.population.toLocaleString();
   const imageSrc = props.country.flags.png;
   const googleMapsLink = props.country.maps.googleMaps;
-
-  const bordersList = props.borderingCountries.map((country, index) => {
+  
+  let bordersList = null;
+  if (props.borderingCountries === null){
+    bordersList =  <li> None </li>
+  } else {
+    bordersList = props.borderingCountries.map((country, index) => {
     return (
       <li name={country} key={index}>
         {" "}
@@ -11,7 +15,7 @@ const CountryDetail = (props) => {
       </li>
     );
   });
-
+  }
   const handleOnClick = (evt) => {
     props.onFavCountryClicked(props.country);
   };
@@ -29,7 +33,7 @@ const CountryDetail = (props) => {
         and the population is {population}.
       </p>
       <p>They drive on the {props.country.car.side}. </p>
-      <p>Borders with </p>
+      <p>Borders with:</p>
       <ul>{bordersList}</ul>
       <p>
         {props.country.flag} {props.country.flags.alt}

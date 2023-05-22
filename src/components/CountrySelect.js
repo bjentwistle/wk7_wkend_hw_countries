@@ -23,8 +23,9 @@ const CountrySelect = (props) => {
   return (
     <div>
       <label>
-      <select onChange={handleOnChange}>
-      <option value="disabled" disabled selected>Select a country</option>
+      <select defaultValue = "" onChange={handleOnChange}>
+      <option value="" disabled >Select a country</option> 
+      {/* updated select and option from solution to stop jsx warning - needed to add defaultValue in select and removed selected from option */}
         {countryOptions}
       </select>
       </label>

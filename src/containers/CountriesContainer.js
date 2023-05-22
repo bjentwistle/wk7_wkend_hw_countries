@@ -42,8 +42,8 @@ const CountryContainer = () => {
       }
       setBorderingCountries(borderingCountries);
     } else{
-        
-        setBorderingCountries(null)
+
+        setBorderingCountries(null) // so if the country has no bordering countries it doesn't stop the rendering of the next selected country.
     }
     setSelectedCountry(country);
   
